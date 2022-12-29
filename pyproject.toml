@@ -34,6 +34,8 @@ python = "^3.9.13"
 click = "*"
 minilog = "*"
 pandas = "^1.5.2"
+kaleido = "0.2.1"
+dtale = "^2.9.1"
 
 [tool.poetry.dev-dependencies]
 
