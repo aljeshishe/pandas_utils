@@ -11,13 +11,12 @@ def test_install(caplog):
     caplog.handler.formatter = logging.Formatter("%(levelname)s: %(name)s: %(message)s")
 
     utils.install()
-
     expected = """INFO: pandas_utils.utils: Adding new methods to DataFrame
-INFO: pandas_utils.utils: reorder_columns: Add specified columns from the begining
-INFO: pandas_utils.utils: drop_from: Drop records from query_df from df
-INFO: pandas_utils.utils: drop_duplicates: Drop duplicates from dataframe
-INFO: pandas_utils.utils: d: Open dataframe in browser
-INFO: pandas_utils.utils: i: Display dataframe
+INFO: pandas_utils.utils: reorder_columns: Add specified columns from the begining.
+INFO: pandas_utils.utils: drop_from: Drop records from query_df from df.
+INFO: pandas_utils.utils: drop_duplicates: Drop duplicates from dataframe.
+INFO: pandas_utils.utils: d: Open dataframe in browser.
+INFO: pandas_utils.utils: i: Display dataframe.
 """
     assert caplog.text == expected
 
@@ -44,7 +43,6 @@ DEBUG: pandas_utils.utils: Rows count before:4 after_count:3
 def test_reorder_columns():
     utils.install()
 
-    df = pd.DataFrame({"a": [1], "b":[2], "c":[3]})
+    df = pd.DataFrame({"a": [1], "b": [2], "c": [3]})
     df = df.reorder_columns("c", "b")
-    assert df.json() == '{"c":{"0":3},"b":{"0":2},"a":{"0":1}}'
-
+    pd.testing.assert_frame_equal(df, pd.DataFrame({"c": [3], "b": [2], "a": [1]}))
