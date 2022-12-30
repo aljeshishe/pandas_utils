@@ -28,7 +28,7 @@ def test_drop_duplicates(caplog):
 
     df = pd.DataFrame({"a": [1, 2, 3, 3]})
     df = df.drop_duplicates(subset="a")
-    assert df.compare(pd.DataFrame({"a": [1, 2, 3]})).empty
+    pd.testing.assert_frame_equal(df, pd.DataFrame({"a": [1, 2, 3]}))
 
     expected = """DEBUG: pandas_utils.utils: Dropping duplicates
 DEBUG: pandas_utils.utils: Dropping rows
